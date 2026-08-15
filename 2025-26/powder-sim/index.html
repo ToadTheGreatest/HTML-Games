@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>POWDER SIM</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div>
+ <canvas id="canv"></canvas><br>
+ <button class="n" onclick="currentmaterial='0'">None</button>
+
+ <button class="m" onclick="currentmaterial='M'">Metal</button>
+ <button class="r" onclick="currentmaterial='R'">Rock</button>
+ <button class="s" onclick="currentmaterial='S'">Sand</button>
+ <button class="g" onclick="currentmaterial='G'">Glass</button>
+
+ <button class="w" onclick="currentmaterial='W'">Water</button>
+ <button class="l" onclick="currentmaterial='L'">Lava</button>
+ <button class="c" onclick="currentmaterial='C'">Acid</button>
+
+ <button class="b" onclick="currentmaterial='B'">Bomb</button>
+ <button class="n" onclick="currentmaterial='N'">Nuke</button>
+ <button class="n" onclick="currentmaterial='V'">Fire Charge</button>
+
+ <button class="f" onclick="currentmaterial='F'">Fire</button>
+ <button class="a" onclick="currentmaterial='A'">Ash</button>
+ <button class="u" onclick="currentmaterial='U'">Nuclear Radiation</button>
+ <button class="h" onclick="currentmaterial='H'">Nuclear Smoke</button>
+ <br>
+ <div>
+  <button id="step" onclick="logic();">Step</button>
+  <button id="play" onclick="playpause();">Play</button>
+ </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
