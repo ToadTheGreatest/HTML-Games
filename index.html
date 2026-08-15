@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2 Player Games - Spam Challenge</title>
+<style>
+body {
+ background-color: #202020;
+}
+.canv {
+ width=1920px;
+ height=1080px;
+}
+#winner {
+ color: #fff;
+}
+</style>
+</head>
+<body>
+<a href="../index.html"><-- BACK</a>
+<div>
+ <canvas id="game_canvas" width=1080 height=620></canvas>
+ <div><span id="winner">JavaScript is disabled for this site. Enable it to play.</span></div>
+</div>
+<script>
+var canvas = document.getElementById("game_canvas")
+var ctx = canvas.getContext("2d")
+//GAME VARS
+var playing = true
+var ball1y = canvas.height/2 + 50
+var ball2y = canvas.height/2 - 50
+function redrawCanvas() {
+ ctx.clearRect(0, 0, canvas.width, canvas.height);
+ // bg
+ ctx.beginPath()
+ ctx.arc(canvas.width/2,canvas.height/2,100,0,Math.PI*2,false)
+ ctx.fillStyle = "#FFFFBB";
+ ctx.fill();
+ // BALL 1
+ ctx.beginPath()
+ ctx.arc(canvas.width/2,ball1y,20,0,Math.PI*2,false)
+ ctx.fillStyle = "#FF0000";
+ ctx.lineWidth = 3;
+ ctx.strokeStyle = "black";
+ ctx.fill();
+ ctx.stroke();
+ // BALL 2
+ ctx.beginPath()
+ ctx.arc(canvas.width/2,ball2y,20,0,Math.PI*2,false)
+ ctx.fillStyle = "#0000FF";
+ ctx.lineWidth = 3;
+ ctx.strokeStyle = "black";
+ ctx.fill();
+ ctx.stroke();
+ gamelogic()
+ if (playing) {window.requestAnimationFrame(redrawCanvas)}
+}
+function red_move() {ball1y -= 5;if (ball1y - ball2y < 40) {ball2y -= 5}}
+function blue_move() {ball2y += 5;if (ball1y - ball2y < 40) {ball1y += 5}}
+document.addEventListener("keydown",function(event) {
+ if (event.code === "ShiftLeft") {red_move()}
+ if (event.code === "ShiftRight") {blue_move()}
+});
+function gamelogic() {
+ if (ball1y > canvas.height/2 + 100) {playing=false;document.getElementById("winner").textContent="Blue Wins!"}
+ if (ball2y < canvas.height/2 - 100) {playing=false;document.getElementById("winner").textContent="Red Wins!"}
+ // UNCOMMENT FOR A SLOW RETURN WHEN GOING FORWARD
+ // if (ball1y < canvas.height/2 + 50) { ball1y += 0.1 }
+ // if (ball2y > canvas.height/2 - 50) { ball2y -= 0.1 }
+}
+document.getElementById("winner").textContent=""
+window.requestAnimationFrame(redrawCanvas)
+</script>
+</body>
+</html>
